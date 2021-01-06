@@ -27,11 +27,14 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column      | Type   | Options                   |
-| --------    | ------ | -----------               |
-| nickname    | string | null: false               |
-| mailaddress | string | null: false, unique: true |
-| password    | string | null: false               |
+| Column             | Type   | Options                   |
+| --------           | ------ | -----------               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| last_name_kana     | string | null: false               |
+| first_name_kana    | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
 
 ### Association
 
@@ -40,19 +43,18 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column           | Type       | Options           |
-| ------           | ------     | -----------       |
-| image            | string     | null: false       |
-| item_name        | string     | null: false       |
-| item_explanation | string     | null: false       |
-| category         | string     | null: false       |
-| item_state       | string     | null: false       |
-| delivery_fee     | string     | null: false       |
-| shipment_source  | string     | null: false       |
-| days_to_ship     | string     | null: false       |
-| price            | string     | null: false       |
-| seller           | string     | null: false       |
-| user_id          | references | foreign_key: true |
+| Column             | Type       | Options           |
+| ------             | ------     | -----------       |
+| item_name          | string     | null: false       |
+| item_explanation   | text       | null: false       |
+| category_id        | integer    | null: false       |
+| item_state_id      | integer    | null: false       |
+| delivery_fee_id    | integer    | null: false       |
+| shipment_source_id | integer    | null: false       |
+| days_to_ship_id    | integer    | null: false       |
+| price              | integer    | null: false       |
+| seller             | string     | null: false       |
+| users              | references | foreign_key: true |
 
 ### Association
 
@@ -61,10 +63,10 @@ Things you may want to cover:
 
 ## buy_record テーブル
 
-| Column  | Type       | Options                        |
-| ------  | ---------- | ------------------------------ |
-| buyer   | string     | null: false                    |
-| user_id | references | foreign_key: true              |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| items  | string     | foreign_key: true              |
+| users  | references | foreign_key: true              |
 
 ### Association
 
@@ -74,13 +76,13 @@ Things you may want to cover:
 
 ## address テーブル
 
-| Column       | Type   | Options     |
-| -------      | ------ | ----------- |
-| postal_code  | string | null: false |
-| prefectures  | string | null: false |
-| municpality  | string | null: false |
-| house_number | string | null: false |
-| phone_number | string | null: false |
+| Column             | Type    | Options     |
+| -------            | ------  | ----------- |
+| postal_code        | string  | null: false |
+| shipment_source_id | integer | null: false |
+| municpality        | string  | null: false |
+| house_number       | string  | null: false |
+| phone_number       | string  | null: false |
 
 ### Association
 
