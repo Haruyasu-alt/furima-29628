@@ -36,9 +36,7 @@ Things you may want to cover:
 | first_name_kana    | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| year               | string | null: false               |
-| month              | string | null: false               |
-| day                | string | null: false               |
+| birthday           | date   | null: false               |
 
 ### Association
 
@@ -85,7 +83,7 @@ Things you may want to cover:
 | shipment_source_id | integer    | null: false       |
 | municpality        | string     | null: false       |
 | house_number       | string     | null: false       |
-| building           | string     | null: false       |
+| building           | string     |                   |
 | phone_number       | string     | null: false       |
 | buy_record         | references | foreign_key: true |
 
