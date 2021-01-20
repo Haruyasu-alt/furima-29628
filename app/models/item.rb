@@ -9,18 +9,38 @@ class Item < ApplicationRecord
   belongs_to :shipment_source
   belongs_to :days_to_ship
 
-  validates :image,
-  validates :name, :text, presence: true
-  validates :explanation :text, presence: true
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :state_id, numericality: { other_than: 1 } 
-  validates :delivery_fee_id, numericality: { other_than: 1 } 
-  validates :shipment_source_id, numericality: { other_than: 1 } 
-  validates :days_to_ship_id, numericality: { other_than: 1 } 
-  validates :price,
-  validates :price, length: { minimum: 300 }
-  validates :price, length: { maximum: 9999999 }
-  with_options format: { with: /^[0-9]+$/, message: "is invalid. Input half-width numbers." } do
+  with_options presence: true do
+  validates :image
+  validates :name
+  validates :explanation 
+  validates :price
+end
+
+with_options numericality: { other_than: 1 } do
+  validates :category_id
+  validates :state_id 
+  validates :delivery_fee_id
+  validates :shipment_source_id 
+  validates :days_to_ship_id
+end
+
+  with_options format: { with: /\A[0-9]+\z/, message: "is invalid. Input half-width numbers." } do
     validates :price
   end
+
+  validates :price, length: { minimum: 300 }
+  validates :price, length: { maximum: 9999999 }
+
 end
+
+# with_options presence: true do
+#   validates :nickname
+#   validates :birthday
+#   with_options format: { with:〜〜〜〜〜} do
+#    validates :first_name
+#    validates :last_name
+#   end
+#  end
+ 
+#  with_options
+#  https://master.tech-camp.in/curriculums/5389
