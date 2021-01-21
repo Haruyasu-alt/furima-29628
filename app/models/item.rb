@@ -30,15 +30,3 @@ end
   end
 
 end
-
-# with_options presence: true do
-#   validates :nickname
-#   validates :birthday
-#   with_options format: { with:〜〜〜〜〜} do
-#    validates :first_name
-#    validates :last_name
-#   end
-#  end
- 
-#  with_options
-#  https://master.tech-camp.in/curriculums/5389
