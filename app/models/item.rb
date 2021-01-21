@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+
   belongs_to :user
   has_one :buy_record
   has_one_attached :image
@@ -25,11 +26,8 @@ with_options numericality: { other_than: 1 } do
 end
 
   with_options format: { with: /\A[0-9]+\z/, message: "is invalid. Input half-width numbers." } do
-    validates :price
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
-
-  validates :price, length: { minimum: 300 }
-  validates :price, length: { maximum: 9999999 }
 
 end
 
