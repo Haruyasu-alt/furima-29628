@@ -84,6 +84,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
+
+      it 'priceに英字が含まれていると登録できない' do
+        @item.price = '123ab'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
     end
   end
 end
