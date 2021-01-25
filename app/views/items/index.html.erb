@@ -127,15 +127,10 @@
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
+    <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
         <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
-
-        </div>
-        <div class='item-info'>
-           <% @items.each do |item| %>
-           
           <%= image_tag item.image.variant(resize: '225x225'), class: 'item-image' if item.image.attached? %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
@@ -144,6 +139,8 @@
           <%# </div>
           <%# //商品が売れていればsold outを表示しましょう %>
 
+        </div>
+        <div class='item-info'>      
           <h3 class='item-name'>
             <%= item.name %>
           </h3>
@@ -156,8 +153,10 @@
           </div>
         </div>
         <% end %>
-        <% end %>
+
+        <%# </div> %>
       </li>
+    <% end %>
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
@@ -165,10 +164,16 @@
 
 <%if @items.length == 0 %>
 
+      <li class='list'>
         <%= link_to "#" do %>
         <div class='item-img-content'>
           <%= image_tag "item-sample.png", class: "item-img" %>
-        </div>
+
+          <%# 商品が売れていればsold outを表示しましょう %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+          <%# //商品が売れていればsold outを表示しましょう %>
         
         <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
         <div class='item-info'>
