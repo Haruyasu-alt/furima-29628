@@ -26,15 +26,15 @@ class ItemsController < ApplicationController
   def edit
   end
 
-  def update
-    @item.update(item_params)
 
+   def update
     if @item.update(item_params)
       redirect_to action: :show
-    else
-    render :edit
+     else
+      render :edit
     end
   end
+
 
 private
 
