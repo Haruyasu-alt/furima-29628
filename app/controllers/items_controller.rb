@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to action: :show
      else
-      render :index
+      render :edit
     end
   end
 
@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to action: :index
    else
-    render :edit
+    render :index
    end
   end
 
