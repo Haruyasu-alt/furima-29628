@@ -36,11 +36,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if  current_user.id == @item.user_id
-    @item.destroy
-    redirect_to action: :index
+    redirect_to root_path if current_user.id != @item.user_id
+       #(ログインしているユーザーと商品のユーザーIDが一致していない場合は、トップページに遷移させる)
+    if @item.destroy
+      redirect_to root_path
    else
-    render :index
+      render :show
    end
   end
 
