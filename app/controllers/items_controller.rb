@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :edit]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.all.order("id DESC")
@@ -35,6 +35,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    redirect_to root_path if current_user.id != @item.user_id
+       #(ログインしているユーザーと商品のユーザーIDが一致していない場合は、トップページに遷移させる)
+    if @item.destroy
+      redirect_to root_path
+   else
+      render :show
+   end
+  end
 
 private
 
